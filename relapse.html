@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>alpose</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #0b0c10;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 40px 0 20px;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      z-index: 2;
+    }
+
+    video {
+      width: 80%;
+      max-width: 800px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    /* Shooting stars */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+      border-radius: 50%;
+      opacity: 0;
+      animation: shoot 2s linear infinite;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Okay ka lang?</h1>
+  
+  <video autoplay playsinline controls>
+    <source src="relapse.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Shooting Stars -->
+  <script>
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      document.body.appendChild(star);
+
+      // Random position & delay
+      star.style.top = Math.random() * window.innerHeight + "px";
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+      star.style.opacity = Math.random();
+
+      setTimeout(() => {
+        star.remove();
+      }, 3000);
+    }
+
+    setInterval(createStar, 300);
+  </script>
+</body>
+</html>
